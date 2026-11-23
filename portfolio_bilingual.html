@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>أحمد عصام رمضان | Ahmed Issam Ramadan - Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --surface: #131a2a;
+      --surface-hover: #1a2338;
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent: #10b981;
+      --accent-soft: rgba(16, 185, 129, 0.14);
+      --secondary: #6366f1;
+      --secondary-soft: rgba(99, 102, 241, 0.14);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Cairo', 'Inter', sans-serif;
+      line-height: 1.65;
+      min-height: 100vh;
+      background-image:
+        radial-gradient(circle at 15% 10%, rgba(16, 185, 129, 0.08), transparent 35%),
+        radial-gradient(circle at 85% 20%, rgba(99, 102, 241, 0.08), transparent 35%);
+    }
+
+    html[dir="ltr"] body {
+      font-family: 'Inter', 'Cairo', sans-serif;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 24px 20px 80px;
+    }
+
+    /* Topbar */
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 20px;
+      background: rgba(19, 26, 42, 0.75);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      position: sticky;
+      top: 16px;
+      z-index: 50;
+      margin-bottom: 36px;
+    }
+
+    .brand {
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 12px var(--accent);
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn:hover {
+      background: var(--surface-hover);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #06281e;
+      border-color: transparent;
+    }
+
+    .btn-primary:hover {
+      background: #34d399;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(145deg, rgba(19, 26, 42, 0.9), rgba(15, 23, 42, 0.7));
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px 36px;
+      margin-bottom: 32px;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    @media (max-width: 860px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 28px 22px;
+      }
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .stat-card {
+      background: rgba(11, 15, 25, 0.6);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .stat-num {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1.2;
+    }
+
+    .stat-label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Section */
+    .section-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin: 36px 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Skills & Credentials */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .info-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+
+    .info-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #e2e8f0;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      color: #cbd5e1;
+    }
+
+    /* Filter Bar */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+
+    .filter-btn {
+      background: var(--surface);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-color: rgba(16, 185, 129, 0.4);
+    }
+
+    /* Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+      gap: 18px;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(16, 185, 129, 0.35);
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .project-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #f8fafc;
+    }
+
+    .status-pill {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 999px;
+      white-space: nowrap;
+      background: var(--secondary-soft);
+      color: #a5b4fc;
+    }
+
+    .status-pill.live {
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .project-desc {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+    }
+
+    .project-footer {
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tech-pill {
+      font-size: 0.74rem;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.04);
+      color: #94a3b8;
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+        color: #0f172a;
+      }
+      .topbar, .filter-bar {
+        display: none;
+      }
+      .hero, .info-card, .project-card {
+        background: #ffffff;
+        border: 1px solid #cbd5e1;
+        color: #0f172a;
+      }
+      .project-desc, .hero p, .stat-label {
+        color: #475569;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-dot"></span>
+        <span data-ar="أحمد عصام رمضان" data-en="Ahmed Issam Ramadan">أحمد عصام رمضان</span>
+      </div>
+      <div class="actions">
+        <button class="btn" id="langToggle" onclick="toggleLanguage()">English</button>
+        <button class="btn btn-primary" onclick="window.print()" data-ar="طباعة / حفظ PDF" data-en="Print / Save PDF">طباعة / حفظ PDF</button>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div>
+        <span class="badge" data-ar="بناء المنتجات الرقمية وأنظمة الذكاء الاصطناعي" data-en="Digital Product Builder & AI Systems">بناء المنتجات الرقمية وأنظمة الذكاء الاصطناعي</span>
+        <h1 data-ar="أحمد عصام رمضان" data-en="Ahmed Issam Ramadan">أحمد عصام رمضان</h1>
+        <p data-ar="مطور وباني منتجات رقمية وأنظمة أتمتة ذاتية التعلم، متخصص في بناء تطبيقات الويب المتكاملة، منصات الـ SaaS، وتنسيق وكلاء الذكاء الاصطناعي (AI Agents) وربط واجهات البرمجة."
+           data-en="Self-taught digital product builder and automation engineer specializing in full-stack web applications, SaaS platforms, AI agent orchestration, and multi-platform API integrations.">
+          مطور وباني منتجات رقمية وأنظمة أتمتة ذاتية التعلم، متخصص في بناء تطبيقات الويب المتكاملة، منصات الـ SaaS، وتنسيق وكلاء الذكاء الاصطناعي (AI Agents) وربط واجهات البرمجة.
+        </p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-num">35+</div>
+          <div class="stat-label" data-ar="مشروعاً وتطبيقاً برمجياً" data-en="Software Projects & Apps">مشروعاً وتطبيقاً برمجياً</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">41</div>
+          <div class="stat-label" data-ar="مهارة ذكاء اصطناعي مخصصة" data-en="Custom AI Agent Skills">مهارة ذكاء اصطناعي مخصصة</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">7</div>
+          <div class="stat-label" data-ar="مراكز تكامل (Integration Hubs)" data-en="API Integration Hubs">مراكز تكامل (Integration Hubs)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">538</div>
+          <div class="stat-label" data-ar="جلسة تطوير موثقة بالذكاء الاصطناعي" data-en="Verified AI Dev Sessions">جلسة تطوير موثقة بالذكاء الاصطناعي</div>
+        </div>
+      </div>
+    </section>
+
+    <h2 class="section-title" data-ar="المهارات والشهادات" data-en="Skills & Credentials">المهارات والشهادات</h2>
+    <section class="info-grid">
+      <div class="info-card">
+        <h3 data-ar="الواجهات وتجربة المستخدم (UI/UX & Frontend)" data-en="UI/UX & Frontend">الواجهات وتجربة المستخدم (UI/UX & Frontend)</h3>
+        <div class="tags">
+          <span class="tag">Next.js 16</span>
+          <span class="tag">React 19</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">Tailwind CSS</span>
+          <span class="tag">HTML / CSS / JS</span>
+          <span class="tag">Figma</span>
+          <span class="tag">Stitch</span>
+          <span class="tag">Anima</span>
+        </div>
+      </div>
+      <div class="info-card">
+        <h3 data-ar="الخوادم، قواعد البيانات، والأتمتة" data-en="Backend, Databases & Automation">الخوادم، قواعد البيانات، والأتمتة</h3>
+        <div class="tags">
+          <span class="tag">Node.js</span>
+          <span class="tag">Python</span>
+          <span class="tag">Supabase (PostgreSQL)</span>
+          <span class="tag">SQLite</span>
+          <span class="tag">n8n</span>
+          <span class="tag">Make.com</span>
+          <span class="tag">WhatsApp Business API</span>
+          <span class="tag">Docker / Railway</span>
+        </div>
+      </div>
+      <div class="info-card">
+        <h3 data-ar="التعليم والشهادات" data-en="Education & Certifications">التعليم والشهادات</h3>
+        <div class="tags">
+          <span class="tag" data-ar="ليسانس الحقوق - جامعة الزقازيق (2022)" data-en="LL.B. Law - Zagazig University (2022)">ليسانس الحقوق - جامعة الزقازيق (2022)</span>
+          <span class="tag">ALX AI Career Essentials (AiCE)</span>
+          <span class="tag">ALX Project Management Crash Course</span>
+        </div>
+      </div>
+    </section>
+
+    <h2 class="section-title" data-ar="أبرز الأعمال والمشاريع" data-en="Featured Works & Projects">أبرز الأعمال والمشاريع</h2>
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterProjects('all', this)" data-ar="الكل" data-en="All">الكل</button>
+      <button class="filter-btn" onclick="filterProjects('fullstack', this)" data-ar="منصات وتطبيقات ويب" data-en="Full-Stack & SaaS">منصات وتطبيقات ويب</button>
+      <button class="filter-btn" onclick="filterProjects('ai', this)" data-ar="الذكاء الاصطناعي والوكلاء" data-en="AI & Agents">الذكاء الاصطناعي والوكلاء</button>
+      <button class="filter-btn" onclick="filterProjects('automation', this)" data-ar="الأتمتة والتكامل" data-en="Automation & Hubs">الأتمتة والتكامل</button>
+      <button class="filter-btn" onclick="filterProjects('mobile', this)" data-ar="تطبيقات الجوال" data-en="Mobile Apps">تطبيقات الجوال</button>
+      <button class="filter-btn" onclick="filterProjects('brand', this)" data-ar="مواقع الشركات والمحتوى" data-en="Agency & Brand">مواقع الشركات والمحتوى</button>
+    </div>
+
+    <section class="projects-grid" id="projectsGrid"></section>
+  </div>
+
+  <script>
+    const projects = [
+      {
+        category: 'fullstack',
+        titleAr: 'شبكة وصل (WASL Network)',
+        titleEn: 'WASL Network',
+        statusAr: 'نشط - L5',
+        statusEn: 'Active - L5',
+        live: true,
+        descAr: 'منصة B2B لربط الشركات الناشئة بالمستثمرين في الشرق الأوسط، مع صلاحيات متعددة (مؤسس، مستثمر، مدير)، 16 ملف Migration في Supabase، ونسخ احتياطي تلقائي.',
+        descEn: 'B2B matchmaking platform connecting MENA startups and investors, featuring multi-role RBAC, 16 Supabase SQL migrations, real-time messaging, and automated backups.',
+        tech: ['Next.js 16', 'React 19', 'TypeScript', 'Supabase', 'Tailwind CSS']
+      },
+      {
+        category: 'mobile',
+        titleAr: 'تطبيق وصل للجوال (WASL Mobile)',
+        titleEn: 'WASL Mobile App',
+        statusAr: 'نموذج عملي - L4',
+        statusEn: 'Functional - L4',
+        live: false,
+        descAr: 'تطبيق جوال مرافق لمنصة وصل لاستعراض الشركات الناشئة واكتشاف الفرص الاستثمارية عبر واجهة مخصصة للأندرويد.',
+        descEn: 'Cross-platform mobile client for WASL Network replicating startup showcase and investor discovery workflows.',
+        tech: ['Expo SDK', 'React Native', 'TypeScript', 'Android']
+      },
+      {
+        category: 'fullstack',
+        titleAr: 'نظام تشغيل مؤسسة تهامي (Tohamy Shooting OS)',
+        titleEn: 'Tohamy Shooting OS',
+        statusAr: 'نشط - L5',
+        statusEn: 'Active - L5',
+        live: true,
+        descAr: 'نظام إدارة وتتبع جلسات التصوير والإنتاج الإعلامي، يفصل بين بوابة المصورين الميدانية ولوحة القيادة التنفيذية المحمية بصلاحيات RBAC.',
+        descEn: 'Media production logistics and shooting pipeline OS separating field photographer logging from executive management oversight.',
+        tech: ['Next.js', 'React', 'Supabase', 'Tailwind CSS']
+      },
+      {
+        category: 'ai',
+        titleAr: 'منصة العيادات الذكية (Clinic-GPT)',
+        titleEn: 'Clinic-GPT',
+        statusAr: 'مُطلق - L6',
+        statusEn: 'Deployed - L6',
+        live: true,
+        descAr: 'مساعد ذكي للرعاية الصحية والعيادات متصل بنقاط استدلال سحابية مع نشر مستمر عبر GitHub Pages و Vercel.',
+        descEn: 'Healthcare and clinical AI assistant frontend interfaced with cloud-hosted inference endpoints.',
+        tech: ['React', 'Vite', 'TypeScript', 'Tailwind CSS']
+      },
+      {
+        category: 'ai',
+        titleAr: 'الخادم الخلفي لـ Team18 RAG',
+        titleEn: 'Team18 RAG Backend',
+        statusAr: 'مُطلق - L6',
+        statusEn: 'Deployed - L6',
+        live: true,
+        descAr: 'خدمة مصغرة (Microservice) للبحث المعزز بالاسترجاع (RAG) واستخراج التضمينات النصية، معبأة في Docker ومربوطة على Railway.',
+        descEn: 'Containerized Retrieval-Augmented Generation REST API exposing embeddings, vector matching, and prompt assembly on Railway.',
+        tech: ['Python', 'FastAPI', 'Docker', 'Railway']
+      },
+      {
+        category: 'ai',
+        titleAr: 'التوأم الرقمي (Virtual Ahmed Issam)',
+        titleEn: 'Virtual Ahmed Issam',
+        statusAr: 'نشط',
+        statusEn: 'Active',
+        live: true,
+        descAr: 'مساعد ذكي وتوأم رقمي شخصي يمثل الهوية المهنية ويجيب عن الاستفسارات التقنية.',
+        descEn: 'Personal digital twin and AI assistant representing professional identity and technical capabilities.',
+        tech: ['AI Agents', 'Next.js', 'LLM']
+      },
+      {
+        category: 'automation',
+        titleAr: 'مراكز التكامل السبعة (Integration Hubs)',
+        titleEn: '7 Custom Integration Hubs',
+        statusAr: 'تشغيلي',
+        statusEn: 'Operational',
+        live: true,
+        descAr: 'حزمة أدوات تكامل برمجية تربط Figma و Google Workspace و LinkedIn و Meta و PayPal و Telegram و TikTok.',
+        descEn: 'Python and Node.js integration wrappers connecting Figma, Google Workspace, LinkedIn, Meta, PayPal, Telegram, and TikTok.',
+        tech: ['Python', 'Node.js', 'REST APIs', 'OAuth']
+      },
+      {
+        category: 'automation',
+        titleAr: 'محرك المحتوى اليومي (Daily Brand Engine)',
+        titleEn: 'Daily Brand Content Engine',
+        statusAr: 'تشغيلي',
+        statusEn: 'Operational',
+        live: true,
+        descAr: 'نظام أتمتة لإنتاج وجدولة ونشر المحتوى اليومي عبر المنصات الاجتماعية مع تنبيهات فورية.',
+        descEn: 'Automated content production and multi-channel publishing pipeline for personal branding.',
+        tech: ['Python', 'Automation', 'Social APIs']
+      },
+      {
+        category: 'automation',
+        titleAr: 'محرك التواصل للشركات (B2B Outreach Engine)',
+        titleEn: 'B2B Outreach Engine',
+        statusAr: 'نشط',
+        statusEn: 'Active',
+        live: true,
+        descAr: 'أداة أتمتة لاكتشاف الفرص التجارية وإدارة حملات التواصل الموجهة للشركات.',
+        descEn: 'Automated B2B lead discovery and outreach workflow engine.',
+        tech: ['Python', 'WhatsApp API', 'Automation']
+      },
+      {
+        category: 'brand',
+        titleAr: 'صفحة هبوط وأكاديمية وكالة OTB',
+        titleEn: 'OTB Agency & Growth Academy',
+        statusAr: 'نشط',
+        statusEn: 'Active',
+        live: true,
+        descAr: 'منصة تعليمية وصفحة هبوط تسويقية حديثة لوكالة OTB التسويقية.',
+        descEn: 'Modern marketing agency landing page and educational growth academy platform.',
+        tech: ['HTML', 'CSS', 'JavaScript', 'Next.js']
+      },
+      {
+        category: 'brand',
+        titleAr: 'عرض علامة سولارا (Solara Showcase)',
+        titleEn: 'Solara Brand Showcase',
+        statusAr: 'نشط',
+        statusEn: 'Active',
+        live: true,
+        descAr: 'عرض تفاعلي ودراسة حالة بصرية لعلامة Solara التجارية.',
+        descEn: 'Interactive brand showcase and visual case study for Solara.',
+        tech: ['UI/UX', 'Frontend', 'Web']
+      },
+      {
+        category: 'fullstack',
+        titleAr: 'متجر المنتجات الرقمية (Digital Products Store)',
+        titleEn: 'Digital Products Store',
+        statusAr: 'نشط',
+        statusEn: 'Active',
+        live: true,
+        descAr: 'منصة لعرض وبيع المنتجات الرقمية والقوالب البرمجية.',
+        descEn: 'E-commerce storefront for digital products and software templates.',
+        tech: ['Next.js', 'Tailwind CSS', 'Payments']
+      }
+    ];
+
+    let currentLang = 'ar';
+    let currentFilter = 'all';
+
+    function renderProjects() {
+      const grid = document.getElementById('projectsGrid');
+      const filtered = currentFilter === 'all'
+        ? projects
+        : projects.filter(p => p.category === currentFilter);
+
+      grid.innerHTML = filtered.map(p => `
+        <article class="project-card">
+          <div>
+            <div class="project-header">
+              <h3 class="project-title">${currentLang === 'ar' ? p.titleAr : p.titleEn}</h3>
+              <span class="status-pill ${p.live ? 'live' : ''}">${currentLang === 'ar' ? p.statusAr : p.statusEn}</span>
+            </div>
+            <p class="project-desc">${currentLang === 'ar' ? p.descAr : p.descEn}</p>
+          </div>
+          <div class="project-footer">
+            ${p.tech.map(t => `<span class="tech-pill">${t}</span>`).join('')}
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function filterProjects(category, btn) {
+      currentFilter = category;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderProjects();
+    }
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'ar' ? 'en' : 'ar';
+      const html = document.documentElement;
+      html.lang = currentLang;
+      html.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+
+      document.getElementById('langToggle').textContent = currentLang === 'ar' ? 'English' : 'العربية';
+
+      document.querySelectorAll('[data-ar]').forEach(el => {
+        el.textContent = el.getAttribute(`data-${currentLang}`);
+      });
+
+      renderProjects();
+    }
+
+    renderProjects();
+  </script>
+</body>
+</html>
